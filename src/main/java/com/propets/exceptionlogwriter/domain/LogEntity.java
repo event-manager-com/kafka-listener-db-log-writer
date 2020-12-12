@@ -10,34 +10,64 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document(collection = "latest_exceptions")
+@Document(collection = "log")
 public class LogEntity {
-    
-    String email;
-    @Indexed
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    LocalDateTime date;
-    String message;
+    private static final long serialVersionUID = 1L;
+
+    private String date;
+    private String time;
+    private String logType;
+    private String resource;
+    private String message;
 
     public LogEntity() {
     }
 
-    public LogEntity(String email, LocalDateTime date, String message) {
-        this.email = email;
+    public LogEntity(String date, String time, String logType, String resource, String message) {
         this.date = date;
+        this.time = time;
+        this.logType = logType;
+        this.resource = resource;
         this.message = message;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDate() {
+        return date;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

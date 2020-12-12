@@ -20,7 +20,7 @@ public class DbWriter {
     @StreamListener(Sink.INPUT)
     void processMessage(String logJson) throws JsonProcessingException {
         LogDto logDto=mapper.readValue(logJson,LogDto.class);
-        LogEntity logEntity=new LogEntity(logDto.getEmail(),logDto.getDate(),logDto.getMessage());
+        LogEntity logEntity=new LogEntity(logDto.getDate(),logDto.getTime(),logDto.getLogType(),logDto.getResource(),logDto.getMessage());
         repository.save(logEntity);
     }
 }
